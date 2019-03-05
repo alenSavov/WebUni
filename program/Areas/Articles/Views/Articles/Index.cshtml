@@ -1,0 +1,52 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using SchoolDiary.Services.Articles.Models
+@model AllArticlesCollectionViewModel
+@{
+    ViewData["Title"] = "Blog";
+}
+<div style="height: 40px;"></div>
+<div class="unit-5 overlay" style="background-image: url('/img/articles.jpeg');">
+    <div class="container text-center">
+        <h2 class="mb-0 ">Blog</h2>
+    </div>
+</div>
+<div class="d-flex justify-content-center m-2">
+    <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn">Create New Article</a>
+</div>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Articles)
+            {
+                <a asp-area="Articles" asp-controller="articles" asp-action="details" asp-route-id="@item.Id" class="mb-3 d-block img-a">
+                    <div class="col-md-6 mb-5 mb-lg-4 col-lg-3" data-aos="fade">
+                        <div class="position-relative unit-8">
+                            @if (item.ArticlePictureUrl != null)
+                            {
+                                <img src="@item.ArticlePictureUrl"/>
+
+                            }
+                            else
+                            {
+                                <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" id="stadiumImg" />
+
+                            }
+                            <h2 class="h5 font-weihgt-normal line-height-sm mb-3"><a href="#" class="text-black">@item.Title</a></h2>
+                            <h3>
+                                @if (item.Content != null && item.Content.Length > 70)
+                                {
+                                    <p>@item.Content.Substring(0, 70) ...</p>
+                                }
+                                else
+                                {
+                                    <p>@item.Content</p>
+                                }
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>

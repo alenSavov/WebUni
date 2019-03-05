@@ -1,0 +1,45 @@
+﻿@model AllEventsViewModelCollection
+@{
+    ViewData["Title"] = "Events";
+}
+<div style="height: 40px;"></div>
+<div class="unit-5 overlay" style="background-image: url('/img/events.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">Events</h2>
+    </div>
+</div>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Events)
+            {
+                <a asp-area="events" asp-controller="events" asp-action="Details" asp-route-id="@item.Id">
+                    <div class="col-md-6 mb-5 mb-lg-4 col-lg-3" data-aos="fade">
+                        <div class="position-relative unit-8">
+                            @if (item.EventPictureUrl != null)
+                            {
+                                <img src="@item.EventPictureUrl" id="stadiumImg" />
+                            }
+                            else
+                            {
+                                <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" />
+
+                            }
+                            <span class="d-block text-gray-100 text-normal  text-danger mb-3">Starting On <span class="mx-2 ">&bullet;</span> @item.StartDate</span>
+                            <h2 class="h5 font-weihgt-normal line-height-sm mb-3"><a href="#" class="text-black">@item.Name</a></h2>
+                            @if (item.Description != null && item.Description.Length > 70)
+                            {
+                                <p>@item.Description.Substring(0, 70) ...</p>
+                            }
+                            else
+                            {
+                                <p>@item.Description</p>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }
+
+        </div>
+    </div>
+</div>

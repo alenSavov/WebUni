@@ -1,0 +1,31 @@
+﻿@model AllArticlesCollectionViewModel
+
+<div class="container-fluid">
+    <table class="table w-50 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Article Name</th>
+                <th scope="col">Creator</th>
+                <th scope="col">Created On</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0;}
+            @foreach (var article in Model.Articles)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td class="font-italic">@article.Title</td>
+                    <td class="font-italic">@article.Creator</td>
+                    <td class="font-italic">@article.CreatedOn</td>
+                    <td><a class="btn bg-danger text-white" asp-area="Articles" asp-controller="Articles" asp-action="Delete" asp-route-id="@article.Id">Delete</a></td>
+                    @*<td><a class="btn bg-info text-white" asp-area="Articles" asp-controller="Articles" asp-action="Edit" asp-route-id="@article.Id">Edit</a></td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,105 @@
+﻿@model DetailsViewModelCollection
+@{
+    ViewData["Title"] = "Details";
+}
+@using SchoolDiary.Services.Utilities
+<<div class="unit-5 overlay" style="background-image: url('/img/hero_1.jpg');">
+    <div class="container text-center">
+        <h2 class="mb-0">Details - @Model.Article.Title</h2>
+    </div>
+</div>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 mb-5">
+                <div class="p-5 bg-white text-center">
+                    <div class="mb-4 mb-md-5 mr-5 ">
+
+                        <div class="job-post-item-header d-flex align-items-end ">
+                            <h2 class="mr-3 text-primary ">@Model.Article.Title</h2>
+                        </div>
+                        <div class="badge-wrap m-4">
+                            <b>Created On:</b> <span class="border border-warning text-warning py-2 px-4 rounded">@Model.Article.CreatedOn</span>
+                        </div>
+                        <div class="badge-wrap m-4">
+                            <b>Category</b> <span class="border border-warning text-warning py-2 px-4 rounded">@Model.Article.Category</span>
+                        </div>
+                    </div>
+                    <div class="img-border mb-5">
+                        <span class="icon-wrap">
+                            <span class="icon icon-play"></span>
+                        </span>
+                        @if (Model.Article.ArticlePictureUrl != null)
+                        {
+                            <img src="@Model.Article.ArticlePictureUrl" />
+
+                        }
+                        else
+                        {
+                            <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" id="stadiumImg" />
+
+                        }
+                    </div>
+                    <p>@Model.Article.Content</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3">Contact Info</h3>
+                    <p class="mb-0 font-weight-bold">Address</p>
+                    <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+                    <p class="mb-0 font-weight-bold">Phone</p>
+                    <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+                    <p class="mb-0 font-weight-bold">Email Address</p>
+                    <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+                </div>
+                <div class="p-4 mb-3 bg-white">
+                    <h3 class="h5 text-black mb-3">More Info</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur? Fugiat quaerat eos qui, libero neque sed nulla.</p>
+                    <p><a href="#" class="btn btn-primary px-4 py-2 text-white pill">Learn More</a></p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+            </div>
+        </div>
+        <div class="container-fluid  element">
+            <div class="row bg-light">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div id="accordion" class="accordion-area">
+                        <div class="panel bg-light">
+                            <div class="panel-header " id="headingOne">
+                                <button class="panel-link bg-danger text-center" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">See all comments / Add comment</button>
+                            </div>
+                            <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="panel-body">
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        <div class=" border bg-light text-center">
+                                            <p>From: <b>@comment.User</b> Created On: <b>@comment.CreatedOn</b></p>
+                                            <p>@comment.Content</p>
+                                        </div>
+                                        @if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
+                                        {
+
+                                            <a class="btn bg-danger text-white m-2 " asp-area="" asp-controller="Comments" asp-action="DeleteCommentForArticle" asp-route-id="@comment.Id">Delete</a>
+                                        }
+
+                                    }
+                                </div>
+                                <div class="">
+                                    <form asp-area="" asp-controller="Comments" asp-action="AddComment" asp-route-id="@Model.Article.Id" class="contact-form " method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <textarea asp-for="@Model.Article.Comment" placeholder="What do you think ...?"></textarea>
+                                        <span asp-validation-for="@Model.Article.Comment"></span>
+                                        <button class="site-btn">Sent Comment</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

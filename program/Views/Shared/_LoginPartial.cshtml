@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Identity
+@using SchoolDiary.Models
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    <li>
+        <a asp-area="Articles" asp-controller="Articles" asp-action="Index" class="nav-link font-weight-bold text-primary">Blog</a>
+    </li>
+    <li>
+        <a asp-area="Events" asp-controller="Events" asp-action="Index" class="nav-link font-weight-bold text-primary">Events</a>
+    </li>
+    @if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
+    {
+        <li><a asp-area="Administration" asp-controller="Administration" asp-action="AddToRole" class="nav-link  d-flex justify-content-end text-danger">ADMIN PANEL</a></li>
+    }
+    <li><a asp-area="" asp-controller="Account" asp-action="Logout" class="nav-link  d-flex justify-content-end text-danger ">Logout</a></li>
+
+}
+else
+{
+    <li><a asp-area="" asp-controller="Account" asp-action="Login" class="nav-link text-danger btn-lg">Login</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Register" class="nav-link text-danger btn-lg">Register</a></li>
+}
+

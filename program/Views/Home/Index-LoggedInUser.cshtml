@@ -1,0 +1,115 @@
+﻿@model CategoryCollectionViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+<!-- Header section end -->
+<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="img/hero_1.jpg">
+    <div class="container">
+        <div class="hero-text text-white">
+            <h2 class="text-danger">Get The Best Free Online Courses</h2>
+            <h4 class="text-danger">As you evolve your career, you need a learning solution that inspires you to create the future. With our platform, you can keep up with the speed of technology, work smarter and faster, and gain in-demand skills in areas like cloud, mobile, security and data.</h4>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+<!-- Hero section end -->
+<!-- categories section -->
+<section class="categories-section spad">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Course Categories</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+        </div>
+        <div class="row">
+            <!-- categorie -->
+
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <a asp-area="courses" asp-controller="courses" asp-action="AllById" asp-route-id="@category.Id">
+                        <div class="categorie-item">
+                            <div class="team m-3 text-center">
+                                @if (category.CategoryPictureUrl != null)
+                                {
+                                    <img src="@category.CategoryPictureUrl" id="stadiumImg" />
+                                    <hr class="teamLegend-line" />
+                                    <div>
+                                        <div class="ci-text">
+                                            <h3>@category.Name</h3>
+                                            <p>@category.Description</p>
+                                            <span>@category.Courses.Count() Courses</span>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" id="stadiumImg" />
+                                    <hr class="teamLegend-line" />
+                                    <div>
+                                        <h3>@category.Name</h3>
+                                        <div class="ci-text">
+                                            <p>@category.Description</p>
+                                            <span>@category.Courses.Count() Courses</span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+            <!-- categorie -->
+            <div class="col-lg-4 col-md-6">
+                <div class="categorie-item">
+                    <div class="ci-thumb set-bg" data-setbg="img/categories/2.jpg"></div>
+                    <div class="ci-text">
+                        <h5>Web Design - EXAMPLE</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur - EXAMPLE</p>
+                        <span>70 Courses - EXAMPLE</span>
+                    </div>
+                </div>
+            </div>
+            <!-- categorie -->
+            <div class="col-lg-4 col-md-6">
+                <div class="categorie-item">
+                    <div class="ci-thumb set-bg" data-setbg="img/categories/3.jpg"></div>
+                    <div class="ci-text">
+                        <h5>Illustration & Drawing - EXAMPLE</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur - EXAMPLE</p>
+                        <span>55 Courses -EXAMPLE</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- categories section end -->
+<!-- search section -->
+<section class="search-section">
+    <div class="container">
+        <div class="search-warp">
+            <div class="section-title text-white">
+                <h2>Search your course</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <!-- search form -->
+                    <form asp-area="courses" asp-controller="courses" asp-action="SearchCourseByName" method="post" class="course-search-form">
+                        <input type="text" placeholder="Course" name="CourseName">
+                        <button class="site-btn">Search Course</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- search section end -->

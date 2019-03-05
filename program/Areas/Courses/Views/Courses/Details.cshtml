@@ -1,0 +1,106 @@
+﻿@using System.Linq
+@using System.Collections.Generic
+@using SchoolDiary.ServicesViewModels.Courses
+@using SchoolDiary.Services.Utilities
+@model List<CourseDetailsViewModel>
+@{
+    ViewData["Title"] = "Course";
+}
+<!-- single course section -->
+@foreach (var course in Model)
+{
+    <!-- single course section - Administration -->
+    @if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
+    {
+        <section class="single-course">
+            <div class="container">
+                <div class="course-meta-area">
+                    <p class="m-2 text-danger">Allowed file types : ".txt", ".pptx", ".pub", ".accdb", ".docx", ".pdf"</p>
+                    <form asp-area="" asp-controller="Resources" asp-action="Upload" asp-route-id="@course.Id" enctype="multipart/form-data">
+                        <div class="input-group m-1 w-25 ">
+                            <div class="custom-file">
+                                <input type="file" asp-for="@course.Files" class="custom-file-input" multiple="" id="inputGroupFile04" name="Files">
+                                <label class="custom-file-label" for="inputGroupFile04">Choose Resource Files</label>
+                            </div>
+                        </div>
+                        <div class="form-group m-1">
+                            <button class=" site-btn buy-btn">Upload Files</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    }
+
+    <!-- single course section -->
+    <section class="single-course spad pb-0">
+        <div class="container">
+            <div class="course-meta-area">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <h3>@course.Name</h3>
+                        <div class="course-metas">
+                            <div class="course-meta">
+                                <div class="cm-info">
+                                    <h6>Category</h6>
+                                    <p>@course.Category.Name</p>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <div class="cm-info">
+                                    <h6>Students</h6>
+                                    @if (course.Users.Any())
+                                    {
+                                        <p>@course.Users.Count()</p>
+                                    }
+                                    else
+                                    {
+                                        <p>0</p>                    ;
+                                    }
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <div class="cm-info">
+                                    <h6>Start Date</h6>
+                                    <p>@course.StartDate</p>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                                <div class="cm-info">
+                                    <h6>End Date</h6>
+                                    <p>@course.EndDate</p>
+                                </div>
+                            </div>
+                            <div class="course-meta">
+                            </div>
+                        </div>
+                        <a asp-area="Courses" asp-controller="Courses" asp-action="GetTheCourse" asp-route-id="@course.Id" class="site-btn buy-btn">Follow Course</a>
+                        <a asp-area="" asp-controller="Resources" asp-action="DownloadResources" asp-route-id="@course.Id" class="site-btn buy-btn">Download Resources</a>
+                    </div>
+                </div>
+            </div>
+            @if (course.CoursePictureUrl != null)
+            {
+                <img src="@course.CoursePictureUrl" />
+            }
+            else
+            {
+                <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" />
+
+            }
+            <div class="row m-5">
+                <div class="col-lg-10 offset-lg-1 course-list">
+                    <div class="cl-item">
+                        <h4>Course Description</h4>
+                        <p>@course.Description</p>
+                    </div>
+                    <div class="cl-item">
+                        <h4>Trainer</h4>
+                        <p>@course.Trainer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- single course section end -->
+}

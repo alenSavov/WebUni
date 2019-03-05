@@ -1,0 +1,27 @@
+﻿@model CategoryCollectionViewModel
+
+<div class="container-fluid">
+    <table class="table w-50 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0;}
+            @foreach (var category in Model.Categories)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@category.Name</td>
+                    <td><a class="btn bg-danger text-white" asp-area="Categories" asp-controller="Categories" asp-action="Delete" asp-route-id="@category.Id">Delete</a></td>
+                    <td><a class="btn bg-info text-white" asp-area="Administration" asp-controller="Administration" asp-action="EditCategory" asp-route-id="@category.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,27 @@
+﻿@model AllEventsViewModelCollection
+
+<div class="container-fluid">
+    <table class="table w-50 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Event Name</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0;}
+            @foreach (var eventItem in Model.Events)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@eventItem.Name</td>
+                    <td><a class="btn bg-danger text-white" asp-area="Events" asp-controller="Events" asp-action="Delete" asp-route-id="@eventItem.Id">Delete</a></td>
+                    <td><a class="btn bg-info text-white" asp-area="Administration" asp-controller="Administration" asp-action="EditEvent" asp-route-id="@eventItem.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

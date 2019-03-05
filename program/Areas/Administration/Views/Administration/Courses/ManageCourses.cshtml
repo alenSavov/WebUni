@@ -1,0 +1,27 @@
+﻿@model AllCoursesViewModelCollection
+
+<div class="container-fluid">
+    <table class="table w-50 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var count = 0;}
+            @foreach (var course in Model.Courses)
+            {
+                count++;
+                <tr>
+                    <th scope="row">@count</th>
+                    <td>@course.Name</td>
+                    <td><a class="btn bg-danger text-white" asp-area="Courses" asp-controller="Courses" asp-action="Delete" asp-route-id="@course.Id">Delete</a></td>
+                    <td><a class="btn bg-info text-white" asp-area="Administration" asp-controller="Administration" asp-action="EditCourse" asp-route-id="@course.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

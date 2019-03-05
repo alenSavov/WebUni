@@ -1,0 +1,58 @@
+﻿@using SchoolDiary.Services.Articles.Models
+@using SchoolDiary.Services.Utilities
+@model CreateArticleInputViewModel
+@{
+    ViewData["Title"] = "Create Article";
+}
+
+<section class="signup-section spad">
+    <div class="signup-bg set-bg" data-setbg="/img/CreateArticle.jpg"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="signup-warp">
+                    <div class="section-title text-white text-left">
+                        <h2>Create Article</h2>
+
+                    </div>
+                    <div class=" text-primary text-left ">
+                        <div class="col-lg-2">
+                            <div class="social-links ">
+                                <a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+                                <a href="https://www.twitter.com"><i class="fa fa-twitter"></i></a>
+                                <a href="https://github.com/"><i class="fa fa-github"></i></a>
+                                <a href="https://www.linkedin.com"><i class="fa fa-linkedin"></i></a>
+                                <a href="https://stackoverflow.com/"><i class="fa fa-stackoverflow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="signup-form" asp-area="Articles" asp-controller="Articles" asp-action="Create" method="post" enctype="multipart/form-data">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div>
+                            <span asp-validation-for="Title" class="text-danger "></span>
+                            <input asp-for="Title" placeholder="Title" />
+                        </div>
+                        <div>
+                            <span asp-validation-for="Content" class="text-danger "></span>
+                            <textarea asp-for="Content" class="form-control" placeholder="Write you article here ..."></textarea>
+                        </div>
+                        <div>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                            <input asp-for="Category" placeholder="Category" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ArticlePicture" class="control-label btn btn-warning">Upload Picture </label>
+                            <input asp-for="ArticlePicture" hidden accept=".gif,.png,.jpg,.jpeg" />
+                            <span asp-validation-for="ArticlePicture" class="text-danger"></span>
+                        </div>
+                        <div class="m-1">
+                            <button class="site-btn">Create</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

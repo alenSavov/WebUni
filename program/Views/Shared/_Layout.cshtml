@@ -1,0 +1,88 @@
+﻿@using SchoolDiary.Models
+@using SchoolDiary.Services.Utilities
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebUni</title>
+    <meta name="description" content="WebUni Education Template">
+    <meta name="keywords" content="webuni, education, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="shortcut icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="site-wrap">
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div> <!-- .site-mobile-menu -->
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light  bg-dark">
+        <h2 class="mb-0 site-logo"><a href="/">Web<strong class="font-weight-bold">Uni</strong> </a></h2>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                @{
+                    var username = UserManager.GetUserName(User);
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Profile" asp-route-username="@username" title="See your profile" class="nav-link text-primary text-ce mb-0 site-logo">Hello,<strong class="font-weight-bold">@username!</strong></a>
+                    }
+                }
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+
+    <partial name="_TempDataMessages" />
+    @RenderBody()
+
+    <partial name="_CookieConsentPartial" />
+
+
+
+    <footer class="main-footer bg-black ">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p class="">WebUni &copy; 2017-2019</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p>Design by <a href="https://github.com/alenSavov" class="external">Alen Savov</a></p>
+                 
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end -->
+  
+    <script src="~/js/circle-progress.min.js"></script>
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

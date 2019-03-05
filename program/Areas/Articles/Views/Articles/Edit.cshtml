@@ -1,0 +1,34 @@
+﻿@model EditArticleInputModel
+@{
+    ViewData["Title"] = "Edit Article";
+}
+
+<section class="signup-section spad">
+    <div class="signup-bg set-bg" data-setbg="/img/CreateArticle.jpg"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="signup-warp">
+                    <div class="section-title text-white text-left">
+                        <h2>EDIT Article</h2>
+
+                    </div>
+                    <form class="signup-form" asp-area="Articles" asp-controller="Articles" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+                        <input type="text" placeholder="Title" value="@Model.Title" name="Title">
+                        <textarea class="form-control" placeholder="Write you article here ..." rows="8" id="Content" name="Content"></textarea>
+                        <input type="text" placeholder="Category" value="@Model.Category" name="Category">
+                        <div class="form-group">
+                            <label asp-for="ArticlePicture" class="control-label btn btn-warning">Upload Picture </label>
+                            <input asp-for="ArticlePicture" hidden accept=".gif,.png,.jpg,.jpeg" />
+                            <span asp-validation-for="ArticlePicture" class="text-danger"></span>
+                        </div>
+                        <div class="m-1">
+                            <button class="site-btn">Save Changes</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

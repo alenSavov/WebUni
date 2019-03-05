@@ -1,0 +1,40 @@
+﻿@model UsersViewModel
+@{
+    ViewData["Title"] = "Users Administration";
+}
+<h2 class="text-center">@ViewData["Title"]</h2>
+<div class="row margin-top">
+    <div class="col-md-8 col-sm-8">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td><a asp-area="" asp-controller="Account" asp-action="Profile" asp-route-username="@user.UserName">@user.UserName</a></td>
+                        <td>@user.Email</td>
+                        <td>
+                            <form asp-area="Administration" asp-controller="Administration" asp-action="AddToRole" method="post">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input type="hidden" name="UserId" value="@user.Id" />
+                                        <select name="Role" asp-items="@Model.Roles" class="form-control"></select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input class="btn btn-sm btn-primary" type="submit" value="Add To Role" />
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

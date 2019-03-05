@@ -1,0 +1,82 @@
+﻿@model UserProfileCollectionViewModel
+@{
+    ViewData["Title"] = "User Information";
+}
+<div style="height: 40px;"></div>
+<div class="container well span6 w-50">
+    <div class="row">
+        <div class="m-4">
+            <img src="~/img/User.jpg" class="img-circle" />
+        </div>
+        <div class="m-4">
+            <h3 class="m-1">Username: @Model.Profile.Username</h3>
+            <h6>First Name: @Model.Profile.FirstName</h6>
+            <h6>Last Name: @Model.Profile.LastName</h6>
+            <h6>Register Date: @Model.Profile.RegisteredOn.ToLocalTime()</h6>
+        </div>
+        @if (Model.Profile.Username == User.Identity.Name)
+        {
+            <div class="container-fluid ">
+                <div>
+                    <a asp-area="" asp-controller="Account" asp-action="UpdateProfile" asp-route-username="@Model.Profile.Username" class="site-btn">Edit Profile</a>
+                    <a asp-area="" asp-controller="Account" asp-action="ChangePassword" class="site-btn">Change Password</a>
+                </div>
+                </div>
+            <div class="p-4">
+                <div>
+                    <h4 class="text-danger ">Followed Courses</h4>
+                    <table class="table font-weight-bold table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                            </tr>
+                        </thead>
+                        @{var count = 1; }
+                        @foreach (var course in Model.Courses)
+                        {
+                            <tbody>
+                                <tr>
+                                    <th scope="row">@count</th>
+                                    <td>@course.Name</td>
+                                    <td>@course.StartDate.ToLocalTime()</td>
+                                    <td>@course.EndDate.ToLocalTime()</td>
+                                </tr>
+                            </tbody>
+                            { count++; }
+                        }
+                    </table>
+                </div>
+
+                <div>
+                    <h4 class="text-danger ">Followed Events</h4>
+                    <table class="table font-weight-bold table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Event Name</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                            </tr>
+                        </thead>
+                        @{var countEvent = 1; }
+                        @foreach (var userEvent in Model.Events)
+                        {
+                            <tbody>
+                                <tr>
+                                    <th scope="row">@countEvent</th>
+                                    <td>@userEvent.Name</td>
+                                    <td>@userEvent.StartDate.ToLocalTime()</td>
+                                    <td>@userEvent.EndDate.ToLocalTime()</td>
+                                </tr>
+                            </tbody>
+                            { countEvent++; }
+                        }
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+</div>

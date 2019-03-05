@@ -1,0 +1,52 @@
+﻿@model SchoolDiary.Services.Events.Models.CreateEventInputViewModel
+
+@{
+    ViewData["Title"] = "CreateEvent";
+}
+
+<h2 class="text-success p-3">Create Event</h2>
+<hr />
+
+<div class="container-fluid  ">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-area="Administration" asp-controller="Administration" asp-action="CreateEvent" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="font-weight-bold form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger "></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label "></label>
+                    <input asp-for="StartDate" class="form-control" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label"></label>
+                    <input asp-for="EndDate" class="form-control" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Place" class="control-label"></label>
+                    <input asp-for="Place" class="form-control" />
+                    <span asp-validation-for="Place" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EventPicture" class="control-label btn btn-warning">Upload Picture </label>
+                    <input asp-for="EventPicture" hidden accept=".gif,.png,.jpg,.jpeg" />
+                    <span asp-validation-for="EventPicture" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

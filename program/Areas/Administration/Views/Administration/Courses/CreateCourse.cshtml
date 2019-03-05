@@ -1,0 +1,58 @@
+﻿@model SchoolDiary.ServicesViewModels.Courses.CreateCourseInputViewModel
+
+@{
+    ViewData["Title"] = "Create Course";
+}
+@using SchoolDiary.Services.Contracts
+@inject ICategoryService _categoryService
+<h2 class="text-center p-3">Create Course</h2>
+<hr />
+
+<div class="container-fluid  ">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-area="Administration" asp-controller="Administration" asp-action="CreateCourse" class="contact-form" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger "></div>
+
+                    <label asp-for="Name" class="control-label font-weight-bold"></label>
+                    <input asp-for="Name" class="font-weight-bold form-control">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                    <div class="">
+                        <label asp-for="Description" class="control-label font-weight-bold"></label>
+                        <textarea asp-for="Description" class="font-weight-bold form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger "></span>
+                    </div>
+                    <div>
+                        <label asp-for="StartDate" class="control-label font-weight-bold">Start Date</label>
+                        <input asp-for="StartDate" class="form-control" />
+                        <span asp-validation-for="StartDate" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="EndDate" class="control-label font-weight-bold">End Date</label>
+                        <input asp-for="EndDate" class="form-control" />
+                        <span asp-validation-for="EndDate" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label asp-for="CategoryName" class="control-label font-weight-bold"></label>
+                        <select asp-for="CategoryName" asp-items="@(new SelectList(ViewBag.ListOfCategories,"Id","Name"))" class="form-control"></select>
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CoursePicture" class="control-label btn btn-warning">Upload Picture </label>
+                        <input asp-for="CoursePicture" hidden accept=".gif,.png,.jpg,.jpeg" />
+                        <span asp-validation-for="CoursePicture" class="text-danger"></span>
+                    </div>
+                    <div class="">
+                        <label asp-for="Trainer" class="control-label font-weight-bold">Trainer</label>
+                        <input asp-for="Trainer" class="form-control">
+                        <span asp-validation-for="Trainer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success">Create Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
