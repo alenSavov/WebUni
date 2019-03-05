@@ -1,3 +1,5 @@
+https://web-uni.azurewebsites.net/
+
 # WebUni
 <p>Small web app platform for online education - ASP.NET Core/ Sql<p>
 
