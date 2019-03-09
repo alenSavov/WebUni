@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolDiary.Models;
 using SchoolDiary.Services.Articles.Models;
+using SchoolDiary.Services.Comments.Models;
 using SchoolDiary.Services.Contracts;
 using SchoolDiary.Services.Utilities;
 using System.Collections.Generic;
@@ -41,6 +42,15 @@ namespace SchoolDiary.Web.Areas.Articles.Controllers
             var articles = _articleService
                 .GetAllArticles()
                 .ToList();
+
+            
+           
+            foreach (var article in articles)
+            {
+                article.Comments = _commentService.GetAllComentsForArticle(article.Id);
+                article.CommentsCounter = article.Comments.Count();
+            }
+
 
             foreach (var article in articles)
             {
@@ -115,7 +125,7 @@ namespace SchoolDiary.Web.Areas.Articles.Controllers
 
             var article = this._articleService.GetById(id);
             article.ArticlePictureUrl = this._cloudinaryService.BuildArticlePictureUrl(article.Title, article.ArticlePictureVersion);
-          
+
             var comments = this._commentService.GetAllComentsForArticle(id);
 
             var vmCollection = new DetailsViewModelCollection

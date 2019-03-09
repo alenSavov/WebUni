@@ -19,9 +19,9 @@ namespace SchoolDiary.Web.Controllers
             this._commentService = commentService;
         }
 
-        public IActionResult AddComment(DetailsViewModelCollection model, string id)
+        public IActionResult AddComment(BaseArticleViewModel model, string id)
         {
-            if (model.Article.Comment == null || id == null)
+            if (model.Comment == null || id == null)
             {
                 TempData[GlobalConstants.TempDataErrorMessageKey] = GlobalConstants.InvalidData;
 
@@ -30,9 +30,9 @@ namespace SchoolDiary.Web.Controllers
 
             var user = this.User.Identity.Name;
 
-            this._commentService.AddComment(model.Article.Comment, id, user);
+            this._commentService.AddComment(model.Comment, id, user);
 
-            return Redirect(ArticleDetailsPath + id);
+            return Redirect(ArticlesPath);
         }
 
         public IActionResult DeleteCommentForArticle(string id)

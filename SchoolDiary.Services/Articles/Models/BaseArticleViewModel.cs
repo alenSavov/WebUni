@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using SchoolDiary.Mapping;
 using SchoolDiary.Models;
+using SchoolDiary.Services.Comments.Models;
 using System;
+using System.Collections.Generic;
 
 namespace SchoolDiary.Services.Articles.Models
 {
@@ -23,7 +25,11 @@ namespace SchoolDiary.Services.Articles.Models
 
         public string Comment { get; set; }
 
+        public int CommentsCounter { get; set; }
+
         public DateTime CreatedOn { get; set; }
+
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {

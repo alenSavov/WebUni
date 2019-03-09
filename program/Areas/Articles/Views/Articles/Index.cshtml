@@ -5,48 +5,161 @@
 @{
     ViewData["Title"] = "Blog";
 }
-<div style="height: 40px;"></div>
+<div style=""></div>
 <div class="unit-5 overlay" style="background-image: url('/img/articles.jpeg');">
     <div class="container text-center">
-        <h2 class="mb-0 ">Blog</h2>
+        <h2 class="mb-0 ">Ours articles</h2>
+@*<div class="d-flex justify-content-center m-2">*@
+    <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn btn-dark">Create New Article</a>
+@*</div>*@
     </div>
-</div>
-<div class="d-flex justify-content-center m-2">
-    <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn">Create New Article</a>
 </div>
 <div class="site-section bg-light">
     <div class="container">
         <div class="row">
             @foreach (var item in Model.Articles)
             {
-                <a asp-area="Articles" asp-controller="articles" asp-action="details" asp-route-id="@item.Id" class="mb-3 d-block img-a">
-                    <div class="col-md-6 mb-5 mb-lg-4 col-lg-3" data-aos="fade">
-                        <div class="position-relative unit-8">
-                            @if (item.ArticlePictureUrl != null)
-                            {
-                                <img src="@item.ArticlePictureUrl"/>
+                <div class="blog-post">
+                    <div>
+                        @if (item.ArticlePictureUrl != null)
+                        {
 
-                            }
-                            else
-                            {
-                                <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" id="stadiumImg" />
-
-                            }
-                            <h2 class="h5 font-weihgt-normal line-height-sm mb-3"><a href="#" class="text-black">@item.Title</a></h2>
-                            <h3>
-                                @if (item.Content != null && item.Content.Length > 70)
-                                {
-                                    <p>@item.Content.Substring(0, 70) ...</p>
-                                }
-                                else
-                                {
-                                    <p>@item.Content</p>
-                                }
-                            </h3>
+                            <img src="@item.ArticlePictureUrl" />
+                        }
+                        else
+                        {
+                            <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" id="stadiumImg" />
+                        }
+                    </div>
+                    <h3>@item.Title</h3>
+                    <div class="blog-metas">
+                        <div class="blog-meta author">
+                            <a>Created By: <b>@item.Creator</b></a>
+                        </div>
+                        <div class="blog-meta">
+                            <a>Category: <b>@item.Category</b></a>
+                        </div>
+                        <div class="blog-meta">
+                            <a>Created On: <b>@item.CreatedOn</b></a>
+                        </div>
+                        <div class="blog-meta">
+                            <a>Comments <b>@item.CommentsCounter</b></a>
                         </div>
                     </div>
-                </a>
+                    <div style="display: block" id="cuttedVersionContent">
+                        @if (item.Content != null && item.Content.Length > 70)
+                        {
+                            <p>@item.Content.Substring(0, 70) ...</p>
+                        }
+                        else
+                        {
+                            <p>@item.Content</p>
+                        }
+                    </div>
+                    <div style="display: none" id="fullContentVersion">
+                        <p>
+                            @item.Content;
+                        </p>
+                        <div style="display: none" id="commentSection">
+
+                            @{int counter = 0;}
+                            @foreach (var comment in item.Comments)
+                            {
+                                <ul class="comment-section">
+                                    @if (counter % 2 == 0)
+                                    {
+                                        <li class="comment user-comment">
+                                            <div class="info">
+                                                <a href="#">@comment.User</a>
+                                                <span>@comment.CreatedOn</span>
+                                                @if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
+                                                {
+
+                                                    <a class="btn bg-danger text-white m-2 " asp-area="" asp-controller="Comments" asp-action="DeleteCommentForArticle" asp-route-id="@comment.Id">Delete</a>
+                                                }
+                                            </div>
+                                            <a class="avatar" href="#">
+                                                <img src="~/img/User.jpg" width="35" alt="Profile Avatar" title="Jack Smith" />
+                                            </a>
+                                            <p>@comment.Content</p>
+                                        </li>
+                                        counter++;
+                                    }
+                                    else
+                                    {
+                                        <li class="comment author-comment">
+                                            <div class="info">
+                                                <a href="#">@comment.User</a>
+                                                <span>@comment.CreatedOn</span>
+                                                @if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
+                                                {
+
+                                                    <a class="btn bg-danger text-white m-2 " asp-area="" asp-controller="Comments" asp-action="DeleteCommentForArticle" asp-route-id="@comment.Id">Delete</a>
+                                                }
+                                            </div>
+                                            <a class="avatar" href="#">
+                                                <img src="~/img/User.jpg" width="35" alt="Profile Avatar" title="Jack Smith" />
+
+                                            </a>
+                                            <p>@comment.Content</p>
+                                        </li>
+                                        counter++;
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <button class="site-btn readmore" id="readMoreButton">Read More</button>
+
+                    <div style="display: none" id="writeCommentSection">
+                        <li class="write-new">
+                            <form asp-area="" asp-controller="Comments" asp-action="AddComment" asp-route-id="@item.Id" class="contact-form " method="post">
+                                <textarea asp-for="@item.Comment" placeholder="Write your comment here" name="comment"></textarea>
+                                <span asp-validation-for="@item.Comment"></span>
+                                <div>
+                                    <img src="~/img/User.jpg" id="writeCommentBtn" width="35" alt="Profile of Bradley Jones" title="Bradley Jones" />
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </li>
+                    </div>
+                </div>
             }
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        let btns = document.querySelectorAll('#readMoreButton');
+
+        btns.forEach(b => b.addEventListener('click', function (e) {
+            let parentElement = b.parentElement;
+
+            let cuttedVersionContent = parentElement.querySelector('#cuttedVersionContent');
+            let fullVersionContent = parentElement.querySelector('#fullContentVersion');
+            let commentSection = parentElement.querySelector('#commentSection');
+            let writeCommentSection = parentElement.querySelector('#writeCommentSection');
+
+            if (cuttedVersionContent.style.display === 'block') {
+
+                $(cuttedVersionContent).hide('blind');
+                $(fullVersionContent).show('blind');
+                parentElement.querySelector('button').textContent = 'Undo';
+                $(commentSection).show('blind');
+
+                writeCommentSection.style.display = 'block';
+
+            }
+            else {
+
+                $(cuttedVersionContent).show('blind');
+                $(fullVersionContent).hide('blind');
+                parentElement.querySelector('button').textContent = 'Read More';
+                $(commentSection).hide('blind');
+                $(writeCommentSection).hide('blind');
+            }
+
+        }));
+    </script>
+}
