@@ -6,32 +6,10 @@
 @{
     ViewData["Title"] = "Course";
 }
+
 <!-- single course section -->
 @foreach (var course in Model)
 {
-    <!-- single course section - Administration -->
-    @*@if (this.User.IsInRole(GlobalConstants.UserRoles.ADMINISTRATOR_ROLE))
-        {
-            <section class="single-course">
-                <div class="container">
-                    <div class="course-meta-area">
-                        <p class="m-2 text-danger">Allowed file types : ".txt", ".pptx", ".pub", ".accdb", ".docx", ".pdf"</p>
-                        <form asp-area="" asp-controller="Resources" asp-action="Upload" asp-route-id="@course.Id" enctype="multipart/form-data">
-                            <div class="input-group m-1 w-25 ">
-                                <div class="custom-file">
-                                    <input type="file" asp-for="@course.Files" class="custom-file-input" multiple="" id="inputGroupFile04" name="Files">
-                                    <label class="custom-file-label" for="inputGroupFile04">Choose Resource Files</label>
-                                </div>
-                            </div>
-                            <div class="form-group m-1">
-                                <button class=" site-btn buy-btn">Upload Files</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        }*@
-
     <!-- single course section -->
     <section class="single-course  pb-0">
         <div class="container">
@@ -62,13 +40,13 @@
                             <div class="course-meta">
                                 <div class="cm-info">
                                     <h6>Start Date</h6>
-                                    <p>@course.StartDate</p>
+                                    <p>@course.StartDate.ToShortDateString()</p>
                                 </div>
                             </div>
                             <div class="course-meta">
                                 <div class="cm-info">
                                     <h6>End Date</h6>
-                                    <p>@course.EndDate</p>
+                                    <p>@course.EndDate.ToShortDateString()</p>
                                 </div>
                             </div>
                             <div class="course-meta">
@@ -76,25 +54,27 @@
                         </div>
                         <a asp-area="Courses" asp-controller="Courses" asp-action="GetTheCourse" asp-route-id="@course.Id" class="site-btn buy-btn">Follow Course</a>
 
+
+
                     </div>
                 </div>
             </div>
             @*@if (course.CoursePictureUrl != null)
-        {
-            <img src="@course.CoursePictureUrl" />
-        }
-        else
-        {
-            <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" />
+                {
+                    <img src="@course.CoursePictureUrl" />
+                }
+                else
+                {
+                    <img src="https://res.cloudinary.com/webuni/image/upload/v1546945534/CategoryPicture/NoImageFound_categoryPicture.jpg" />
 
-        }*@
+                }*@
 
-            <div class="spad" id="resourceSection">
+            <div class="spad" id="recourceSection">
 
                 <div id="accordion" class="accordion-area">
                     <div class="panel">
                         <div class="panel-header" id="headingOne">
-                            <button class="panel-link text-center" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Download resources for the course</button>
+                            <button class="panel-link text-center" id="resourceSectionBtn" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Download resources for the course</button>
                         </div>
                         <div id="collapse1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="panel-body">
@@ -120,20 +100,26 @@
                 </div>
             </div>
             <div class="row m-5">
-            <div class="col-lg-10 offset-lg-1 course-list">
-                <div class="cl-item">
-                    <h4>Course Description</h4>
-                    <p>@course.Description</p>
-                </div>
-                <div class="cl-item">
-                    <h4>Trainer</h4>
-                    <p>@course.Trainer</p>
+                <div class="col-lg-10 offset-lg-1 course-list">
+                    <div class="cl-item">
+                        <h4>Course Description</h4>
+                        <p>@course.Description</p>
+                    </div>
+                    <div class="cl-item">
+                        <h4>Trainer</h4>
+                        <p>@course.Trainer</p>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
 
     </section>
-    <!-- single course section end -->
 
+
+
+    @section scripts {
+        <script>
+        </script>
+
+    }
 }
