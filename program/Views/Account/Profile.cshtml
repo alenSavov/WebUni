@@ -2,7 +2,9 @@
 @{
     ViewData["Title"] = "User Information";
 }
+
 <div style="height: 40px;"></div>
+
 <div class="container well span6 w-50">
     <div class="row">
         <div class="m-4">
@@ -21,7 +23,7 @@
                     <a asp-area="" asp-controller="Account" asp-action="UpdateProfile" asp-route-username="@Model.Profile.Username" class="site-btn">Edit Profile</a>
                     <a asp-area="" asp-controller="Account" asp-action="ChangePassword" class="site-btn">Change Password</a>
                 </div>
-                </div>
+            </div>
             <div class="p-4">
                 <div>
                     <h4 class="text-danger ">Followed Courses</h4>
