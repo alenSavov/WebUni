@@ -5,13 +5,12 @@
 @{
     ViewData["Title"] = "Blog";
 }
-<div style=""></div>
-<div class="unit-5 overlay" style="background-image: url('/img/articles.jpeg');">
-    <div class="container text-center">
-        <h2 class="mb-0 ">Ours articles</h2>
+
+
+    <div class="container text-center" style="background-color:#212529">
         <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn btn-dark">Create New Article</a>
     </div>
-</div>
+
 
 <div class="site-section bg-light">
     <div class="container">
@@ -39,7 +38,7 @@
                             <a>Category: <b>@item.Category</b></a>
                         </div>
                         <div class="blog-meta">
-                            <a>Created On: <b>@item.CreatedOn</b></a>
+                            <a>Created On: <b>@item.CreatedOn.ToShortDateString()</b></a>
                         </div>
                         <div class="blog-meta">
                             <a>Comments <b>@item.CommentsCounter</b></a>
@@ -110,10 +109,10 @@
                     </div>
                     <button class="site-btn readmore" id="readMoreButton">Read More</button>
 
-                    <div style="display: none" id="writeCommentSection">
+                    <div style="display: none"  id="writeCommentSection">
                         <li class="write-new">
                             <form asp-area="" asp-controller="Comments" asp-action="AddComment" asp-route-id="@item.Id" class="contact-form " method="post">
-                                <textarea asp-for="@item.Comment" placeholder="Write your comment here" name="comment"></textarea>
+                                <textarea asp-for="@item.Comment"  placeholder="Write your comment here"  name="comment"></textarea>
                                 <span asp-validation-for="@item.Comment"></span>
                                 <div>
                                     <img src="~/img/User.jpg" id="writeCommentBtn" width="35" alt="Profile of Bradley Jones" title="Bradley Jones" />

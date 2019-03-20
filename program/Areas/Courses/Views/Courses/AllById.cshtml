@@ -9,12 +9,12 @@
             <!-- categorie -->
             @foreach (var course in Model.courses)
             {
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" >
                     <a asp-area="courses" asp-controller="courses" asp-action="Details" asp-route-id="@course.Id">
                         <div class="categorie-item ">
                             @if (course.CoursePictureUrl != null)
                             {
-                                <img src="@course.CoursePictureUrl" id="stadiumImg" />
+                                <img src="@course.CoursePictureUrl" width="230" id="stadiumImg" />
                                 <hr class="teamLegend-line" />
                                 <div>
                                     <div class="ci-text">
