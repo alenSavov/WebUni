@@ -32,5 +32,7 @@ namespace SchoolDiary.Services.Contracts
         CourseDetailsViewModel SearchForCourseByName(string courseName);
 
         CourseDetailsViewModel GetCourseByName(string courseName);
+
+        void UnFollowCourse(string courseName, string username);
     }
 }

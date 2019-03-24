@@ -6,15 +6,15 @@
 <div style="height: 40px;"></div>
 
 <div class="container well span6 w-50">
-    <div class="row">
-        <div class="m-4">
+    <div class="">
+        <div class="">
             <img src="~/img/User.jpg" class="img-circle" />
         </div>
         <div class="m-4">
             <h3 class="m-1">Username: @Model.Profile.Username</h3>
             <h6>First Name: @Model.Profile.FirstName</h6>
             <h6>Last Name: @Model.Profile.LastName</h6>
-            <h6>Register Date: @Model.Profile.RegisteredOn.ToLocalTime()</h6>
+            <h6>Register Date: @Model.Profile.RegisteredOn.ToLocalTime().ToShortDateString()</h6>
         </div>
         @if (Model.Profile.Username == User.Identity.Name)
         {
@@ -25,35 +25,49 @@
                 </div>
             </div>
             <div class="p-4">
-                <div>
-                    <h4 class="text-danger ">Followed Courses</h4>
-                    <table class="table font-weight-bold table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Course Name</th>
-                                <th scope="col">Start Date</th>
-                                <th scope="col">End Date</th>
-                            </tr>
-                        </thead>
-                        @{var count = 1; }
-                        @foreach (var course in Model.Courses)
-                        {
-                            <tbody>
+                @if (Model.Courses.Any())
+                {
+                <h4 class="text-center">Followed courses</h4>
+                    <div>
+                        <table class="table font-weight-bold table-hover">
+                            <thead>
                                 <tr>
-                                    <th scope="row">@count</th>
-                                    <td>@course.Name</td>
-                                    <td>@course.StartDate.ToLocalTime()</td>
-                                    <td>@course.EndDate.ToLocalTime()</td>
-                                </tr>
-                            </tbody>
-                            { count++; }
-                        }
-                    </table>
-                </div>
+                                    <th scope="col">Course Name</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">UnFollow Course</th>
 
-                <div>
-                    <h4 class="text-danger ">Followed Events</h4>
+                                </tr>
+                            </thead>
+                            @foreach (var course in Model.Courses)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td><p>@course.Name</p></td>
+
+                                        <td><p>@course.StartDate.ToLocalTime()</td>
+                                        <td><p>@course.EndDate.ToLocalTime()</p></td>
+                                        <td><a asp-area="Courses" asp-controller="Courses" asp-action="UnFollowCourse" asp-route-courseName="@course.Name" name="name" class="btn btn-danger">Unfollow</a></td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div id="coursesMessage">
+                        <h3>You don't have courses yet.</h3>
+                    </div>
+                }
+            </div>
+
+
+            <div>
+                @if (Model.Events.Any())
+                {
+
+                    <h4 class="text-center ">Followed Events</h4>
                     <table class="table font-weight-bold table-hover">
                         <thead>
                             <tr>
@@ -77,7 +91,13 @@
                             { countEvent++; }
                         }
                     </table>
-                </div>
+                }
+                else
+                {
+                    <div>
+                        <h3>You don't have events yet.</h3>
+                    </div>
+                }
             </div>
         }
     </div>

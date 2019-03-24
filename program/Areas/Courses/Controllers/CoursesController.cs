@@ -103,6 +103,21 @@ namespace SchoolDiary.Web.Areas
             return Redirect("/");
         }
 
+        [Authorize]
+        public IActionResult UnFollowCourse(string courseName)
+        {
+            if (courseName == null)
+            {
+                return this.View();
+            }
+
+            var currentUserName = this.User.Identity.Name;
+
+            this._courseService.UnFollowCourse(courseName, currentUserName);
+
+            return this.Redirect("/account/profile?=" + this.User.Identity.Name);
+        }
+
 
         [Authorize(Roles = GlobalConstants.UserRoles.ADMINISTRATOR_ROLE)]
         public IActionResult Delete(string id)

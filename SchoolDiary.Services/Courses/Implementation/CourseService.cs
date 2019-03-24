@@ -95,7 +95,7 @@ namespace SchoolDiary.Services
                 .FirstOrDefault(u => u.UserName == studentName);
 
             var course = this._dbContext.Courses
-                .FirstOrDefault(c => c.Id == courseId);
+                .FirstOrDefault(c => c.Name == courseId);
 
             var userExist = this._dbContext.UsersCourses.Any(x => x.User.Id == user.Id && x.Course.Id == courseId);
             if (userExist)
@@ -173,6 +173,20 @@ namespace SchoolDiary.Services
                 .FirstOrDefault(x => x.Name == courseName);
 
             return course;
+        }
+
+        public void UnFollowCourse(string courseName, string username)
+        {
+            var user = this._dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            var course = this._dbContext.Courses.FirstOrDefault(x => x.Name == courseName);
+
+            var userCourse = this._dbContext.UsersCourses.FirstOrDefault(x => x.CourseId == course.Id && x.UserId == user.Id);
+
+            this._dbContext.UsersCourses.Remove(userCourse);
+            this._dbContext.SaveChanges();
+
+            //this._dbContext.UsersCourses.FirstOrDefault(x => x.)
+            //this._dbContext.SaveChanges();
         }
 
         public CourseDetailsViewModel SearchForCourseByName(string courseName)
