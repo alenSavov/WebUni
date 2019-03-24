@@ -27,6 +27,7 @@ namespace SchoolDiary.Services.Accounts.Models
 
         public DateTime RegisteredOn { get; set; }
 
+        public string Email { get; set; }
 
         public ICollection<UsersCourses> Courses { get; set; }
 

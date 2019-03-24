@@ -184,9 +184,7 @@ namespace SchoolDiary.Services
 
             this._dbContext.UsersCourses.Remove(userCourse);
             this._dbContext.SaveChanges();
-
-            //this._dbContext.UsersCourses.FirstOrDefault(x => x.)
-            //this._dbContext.SaveChanges();
+            
         }
 
         public CourseDetailsViewModel SearchForCourseByName(string courseName)

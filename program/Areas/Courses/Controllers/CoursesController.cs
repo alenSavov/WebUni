@@ -108,7 +108,7 @@ namespace SchoolDiary.Web.Areas
         {
             if (courseName == null)
             {
-                return this.View();
+                return this.Redirect("/account/profile?=" + this.User.Identity.Name);
             }
 
             var currentUserName = this.User.Identity.Name;

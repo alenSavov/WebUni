@@ -1,17 +1,11 @@
-﻿using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
-using Microsoft.AspNetCore.Http;
-using SchoolDiary.Data;
+﻿using SchoolDiary.Data;
 using SchoolDiary.Mapping;
 using SchoolDiary.Models;
 using SchoolDiary.Services.Articles.Models;
 using SchoolDiary.Services.Contracts;
-using SchoolDiary.Services.Utilities;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SchoolDiary.Services
 {
@@ -92,5 +86,16 @@ namespace SchoolDiary.Services
 
             this._dbContext.SaveChanges();
         }       
+
+        public void Unfollow(string eventName, string username)
+        {
+            var user = this._dbContext.Users.FirstOrDefault(x => x.UserName == username);
+            var eventToken = this._dbContext.Events.FirstOrDefault(x => x.Name == eventName);
+
+            var userEvent = this._dbContext.UsersEvents.FirstOrDefault(x => x.EventId == eventToken.Id && x.UserId == user.Id);
+
+            this._dbContext.UsersEvents.Remove(userEvent);
+            this._dbContext.SaveChanges();
+        }
     }
 }

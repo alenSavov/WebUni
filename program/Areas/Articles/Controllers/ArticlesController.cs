@@ -179,6 +179,20 @@ namespace SchoolDiary.Web.Areas.Articles.Controllers
         //    return Redirect(ArticlesPath);
         //}
 
+        public IActionResult Unfollow(string eventName)
+        {
+            if (eventName == null)
+            {
+                return this.Redirect("/account/profile?=" + this.User.Identity.Name);
+            }
+
+            var currentUserName = this.User.Identity.Name;
+
+            this._articleService.Unfollow(eventName, currentUserName);
+
+            return this.Redirect("/account/profile?=" + this.User.Identity.Name);
+        }
+
         public bool IsValidImageFileExtensions(IFormFile file)
         {
             var currentFileExtention = file.FileName.Split('.')[1];

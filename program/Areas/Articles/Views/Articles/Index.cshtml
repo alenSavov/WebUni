@@ -7,10 +7,11 @@
 }
 
 
-    <div class="container text-center" style="background-color:#212529">
-        <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn btn-dark">Create New Article</a>
-    </div>
+<div class="container text-center" style="background-color:#212529">
+    <a asp-area="Articles" asp-controller="Articles" asp-action="Create" class="site-btn btn-dark">Create New Article</a>
+</div>
 
+<div style="height: 40px;"></div>
 
 <div class="site-section bg-light">
     <div class="container">
@@ -109,10 +110,10 @@
                     </div>
                     <button class="site-btn readmore" id="readMoreButton">Read More</button>
 
-                    <div style="display: none"  id="writeCommentSection">
+                    <div style="display: none" id="writeCommentSection">
                         <li class="write-new">
                             <form asp-area="" asp-controller="Comments" asp-action="AddComment" asp-route-id="@item.Id" class="contact-form " method="post">
-                                <textarea asp-for="@item.Comment"  placeholder="Write your comment here"  name="comment"></textarea>
+                                <textarea asp-for="@item.Comment" placeholder="Write your comment here" name="comment"></textarea>
                                 <span asp-validation-for="@item.Comment"></span>
                                 <div>
                                     <img src="~/img/User.jpg" id="writeCommentBtn" width="35" alt="Profile of Bradley Jones" title="Bradley Jones" />

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using SchoolDiary.Services.Articles.Models;
+﻿using SchoolDiary.Services.Articles.Models;
 using System.Collections.Generic;
 
 namespace SchoolDiary.Services.Contracts
@@ -15,5 +14,7 @@ namespace SchoolDiary.Services.Contracts
         void Delete(string id);
 
         void Edit(EditArticleInputModel model, string imageUploadResult);
+
+        void Unfollow(string eventName, string username);
     }
 }
