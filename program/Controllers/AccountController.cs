@@ -46,6 +46,11 @@ namespace SchoolDiary.Web.Controllers
 
         public IActionResult Login()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return Redirect("\\");
+            }
+
             return this.View();
         }
 

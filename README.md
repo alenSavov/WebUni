@@ -1,5 +1,3 @@
-https://web-uni.azurewebsites.net/
-
 # WebUni
 <p>Small web app platform for online education - ASP.NET Core/ Sql<p>
 
@@ -46,6 +44,7 @@ Example:
 }
 ```
 
+<<<<<<< HEAD
 
 
 <p>![Capture](https://user-images.githubusercontent.com/28908397/57332932-6cd26580-7124-11e9-88ca-5af885c4d7f9.JPG)</p>
@@ -55,3 +54,13 @@ Example:
 <p>![Capture5](https://user-images.githubusercontent.com/28908397/57332952-722fb000-7124-11e9-94bd-ea6a179f5cb1.JPG)</p>
 <p>![Capture6](https://user-images.githubusercontent.com/28908397/57332955-73f97380-7124-11e9-8b7b-c24255a8598f.JPG)</p>
 
+=======
+![Capture](https://user-images.githubusercontent.com/28908397/57332932-6cd26580-7124-11e9-88ca-5af885c4d7f9.JPG)
+![Capture2](https://user-images.githubusercontent.com/28908397/57332938-6e039280-7124-11e9-91f1-c19211d5abe8.JPG)
+![Capture3](https://user-images.githubusercontent.com/28908397/57332945-6fcd5600-7124-11e9-9454-1b409f18245d.JPG)
+![Capture4](https://user-images.githubusercontent.com/28908397/57332949-70fe8300-7124-11e9-9436-985175796dff.JPG)
+![Capture5](https://user-images.githubusercontent.com/28908397/57332952-722fb000-7124-11e9-94bd-ea6a179f5cb1.JPG)
+![Capture6](https://user-images.githubusercontent.com/28908397/57332955-73f97380-7124-11e9-8b7b-c24255a8598f.JPG)
+
+
+>>>>>>> 382b7b6b26e06f2603456cd4caaa7924d1d37ea3

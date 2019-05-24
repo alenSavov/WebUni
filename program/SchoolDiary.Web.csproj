@@ -7,12 +7,16 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Categories\Models\**" />
+    <Compile Remove="Areas\Courses\Models\**" />
     <Compile Remove="wwwroot\Files\**" />
     <Content Remove="Areas\Categories\Models\**" />
+    <Content Remove="Areas\Courses\Models\**" />
     <Content Remove="wwwroot\Files\**" />
     <EmbeddedResource Remove="Areas\Categories\Models\**" />
+    <EmbeddedResource Remove="Areas\Courses\Models\**" />
     <EmbeddedResource Remove="wwwroot\Files\**" />
     <None Remove="Areas\Categories\Models\**" />
+    <None Remove="Areas\Courses\Models\**" />
     <None Remove="wwwroot\Files\**" />
   </ItemGroup>
 
@@ -129,7 +133,6 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Categories\Views\Categories\" />
-    <Folder Include="Areas\Courses\Models\" />
     <Folder Include="wwwroot\Administration\Administration\vendor\font-awesome\less\" />
     <Folder Include="wwwroot\Administration\Administration\vendor\font-awesome\scss\" />
   </ItemGroup>
