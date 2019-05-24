@@ -40,9 +40,18 @@ Also he have permission to make another user with role - 'admin'.</p>
 Example:
 ```
 "Cloudinary": {
-  "CloudName": "AuctionSystemCloud",
+  "CloudName": "cloudname",
   "ApiKey": "488*********516",
   "ApiSecret": "3m7******************KdS"
 }
 ```
+
+
+
+<p>![Capture](https://user-images.githubusercontent.com/28908397/57332932-6cd26580-7124-11e9-88ca-5af885c4d7f9.JPG)</p>
+<p>![Capture2](https://user-images.githubusercontent.com/28908397/57332938-6e039280-7124-11e9-91f1-c19211d5abe8.JPG)</p>
+<p>![Capture3](https://user-images.githubusercontent.com/28908397/57332945-6fcd5600-7124-11e9-9454-1b409f18245d.JPG)</p>
+<p>![Capture4](https://user-images.githubusercontent.com/28908397/57332949-70fe8300-7124-11e9-9436-985175796dff.JPG)</p>
+<p>![Capture5](https://user-images.githubusercontent.com/28908397/57332952-722fb000-7124-11e9-94bd-ea6a179f5cb1.JPG)</p>
+<p>![Capture6](https://user-images.githubusercontent.com/28908397/57332955-73f97380-7124-11e9-8b7b-c24255a8598f.JPG)</p>
 
