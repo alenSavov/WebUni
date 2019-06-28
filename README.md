@@ -44,23 +44,13 @@ Example:
 }
 ```
 
-<<<<<<< HEAD
+![test2](https://user-images.githubusercontent.com/28908397/60321280-00861c80-9985-11e9-8f70-0421e6bd0ef7.gif)
+
+![test3](https://user-images.githubusercontent.com/28908397/60321378-4d69f300-9985-11e9-8c18-b0fbb280fabc.gif)
+
+![test4](https://user-images.githubusercontent.com/28908397/60321404-607cc300-9985-11e9-91e9-c7d94f46694a.gif)
+
+![test5](https://user-images.githubusercontent.com/28908397/60321431-712d3900-9985-11e9-8f37-9c4b6a6be270.gif)
 
 
-<p>![Capture](https://user-images.githubusercontent.com/28908397/57332932-6cd26580-7124-11e9-88ca-5af885c4d7f9.JPG)</p>
-<p>![Capture2](https://user-images.githubusercontent.com/28908397/57332938-6e039280-7124-11e9-91f1-c19211d5abe8.JPG)</p>
-<p>![Capture3](https://user-images.githubusercontent.com/28908397/57332945-6fcd5600-7124-11e9-9454-1b409f18245d.JPG)</p>
-<p>![Capture4](https://user-images.githubusercontent.com/28908397/57332949-70fe8300-7124-11e9-9436-985175796dff.JPG)</p>
-<p>![Capture5](https://user-images.githubusercontent.com/28908397/57332952-722fb000-7124-11e9-94bd-ea6a179f5cb1.JPG)</p>
-<p>![Capture6](https://user-images.githubusercontent.com/28908397/57332955-73f97380-7124-11e9-8b7b-c24255a8598f.JPG)</p>
 
-=======
-![Capture](https://user-images.githubusercontent.com/28908397/57332932-6cd26580-7124-11e9-88ca-5af885c4d7f9.JPG)
-![Capture2](https://user-images.githubusercontent.com/28908397/57332938-6e039280-7124-11e9-91f1-c19211d5abe8.JPG)
-![Capture3](https://user-images.githubusercontent.com/28908397/57332945-6fcd5600-7124-11e9-9454-1b409f18245d.JPG)
-![Capture4](https://user-images.githubusercontent.com/28908397/57332949-70fe8300-7124-11e9-9436-985175796dff.JPG)
-![Capture5](https://user-images.githubusercontent.com/28908397/57332952-722fb000-7124-11e9-94bd-ea6a179f5cb1.JPG)
-![Capture6](https://user-images.githubusercontent.com/28908397/57332955-73f97380-7124-11e9-8b7b-c24255a8598f.JPG)
-
-
->>>>>>> 382b7b6b26e06f2603456cd4caaa7924d1d37ea3
